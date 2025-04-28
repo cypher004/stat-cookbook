@@ -2392,6 +2392,65 @@ P(j/n)
 + \left( \frac{2}{n} \sum_{t=1}^n x_t \sin(2\pi t j/n) \right)^2
 \end{align*}
 
+\section{Information Theory}
+
+\textbf{Self-Information:} The amount of surprise associated with an event x with probability p(x).
+Variations: The base of the logarithm b determines the unit (e.g., b=2 for bits, b=e for nats).
+$$I(x) = -\log_b(p(x))$$
+
+\textbf{Entropy (Shannon Entropy):} The average self-information of a random variable X, measuring its uncertainty.
+Variations: The base of the logarithm b determines the unit. Summation is over all possible outcomes in the set \mathcal{X}.
+$$H(X) = - \sum_{x \in \mathcal{X}} p(x) \log_b(p(x))$$
+
+\textbf{Joint Entropy:} Measures the uncertainty of the joint distribution of two random variables X and Y.
+Variations: Summation is over all possible pairs of outcomes (x, y) in the sets \mathcal{X} and \mathcal{Y}.
+$$H(X, Y) = - \sum_{x \in \mathcal{X}} \sum_{y \in \mathcal{Y}} p(x, y) \log_b(p(x, y))$$
+
+\textbf{Conditional Entropy:} The average uncertainty remaining about Y after observing X.
+Variations: Can be expressed using conditional probability p(y|x) or joint probability p(x,y).
+$$H(Y|X) = \sum_{x \in \mathcal{X}} p(x) H(Y|X=x) = - \sum_{x \in \mathcal{X}} p(x) \sum_{y \in \mathcal{Y}} p(y|x) \log_b(p(y|x))$$
+$$H(Y|X) = - \sum_{x \in \mathcal{X}} \sum_{y \in \mathcal{Y}} p(x, y) \log_b(p(y|x))$$
+
+Chain Rule for Entropy: Relates joint entropy to marginal and conditional entropies.
+$$H(X, Y) = H(X) + H(Y|X) = H(Y) + H(X|Y)$$
+
+\textbf{Mutual Information:} Measures the shared information between two random variables X and Y.
+Variations: Can be expressed using entropies, or using joint and marginal probabilities. It is symmetric, I(X;Y) = I(Y;X).
+$$I(X; Y) = H(X) - H(X|Y) = H(Y) - H(Y|X)$$
+$$I(X; Y) = \sum_{x \in \mathcal{X}} \sum_{y \in \mathcal{Y}} p(x, y) \log_b\left(\frac{p(x, y)}{p(x)p(y)}\right)$$
+$$I(X; Y) = H(X) + H(Y) - H(X, Y)$$
+
+\textbf{Kullback-Leibler Divergence (Relative Entropy):} Measures the difference between two probability distributions P and Q. It is not symmetric.
+Variations: Summation is over all possible outcomes in the set \mathcal{X}.
+$$D_{KL}(P || Q) = \sum_{x \in \mathcal{X}} P(x) \log_b\left(\frac{P(x)}{Q(x)}\right)$$
+
+\textbf{Differential Entropy (for Continuous Random Variables):} Extension of entropy to continuous variables.
+Variations: Integral replaces summation.
+$$h(X) = - \int_{-\infty}^{\infty} f(x) \log_b(f(x)) dx$$
+
+\textbf{Joint Differential Entropy (for Continuous Random Variables):} Extension of joint entropy to continuous variables.
+Variations: Double integral replaces double summation.
+$$h(X, Y) = - \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x, y) \log_b(f(x, y)) dx dy$$
+
+\textbf{Conditional Differential Entropy (for Continuous Random Variables):} Extension of conditional entropy to continuous variables.
+Variations: Double integral replaces summation over x and summation over y.
+$$h(Y|X) = - \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x, y) \log_b(f(y|x)) dx dy$$
+
+\textbf{Mutual Information (for Continuous Random Variables):} Extension of mutual information to continuous variables.
+Variations: Integrals replace summations.
+$$I(X; Y) = h(X) - h(X|Y) = h(Y) - h(Y|X)$$
+$$I(X; Y) = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x, y) \log_b\left(\frac{f(x, y)}{f(x)f(y)}\right) dx dy$$
+
+\textbf{Kullback-Leibler Divergence (for Continuous Random Variables):} Extension of KL divergence to continuous variables.
+Variations: Integral replaces summation.
+$$D_{KL}(P || Q) = \int_{-\infty}^{\infty} p(x) \log_b\left(\frac{p(x)}{q(x)}\right) dx$$
+
+\textbf{Channel Capacity:} The maximum reliable information transmission rate through a channel.
+Variations: General definition, formula for Discrete Memoryless Channel (DMC), and formula for Additive White Gaussian Noise (AWGN) channel (Shannon-Hartley theorem).
+$$C = \max_{p(x)} I(X; Y)$$
+$$C = \max_{p(x)} \sum_{x \in \mathcal{X}} \sum_{y \in \mathcal{Y}} p(x) p(y|x) \log_b\left(\frac{p(y|x)}{\sum_{x' \in \mathcal{X}} p(x') p(y|x')}\right)$$
+$$C = B \log_2\left(1 + \frac{S}{N}\right)$$
+
 \section{Math}
 
 %\subsection{Orthogonal Functions}
